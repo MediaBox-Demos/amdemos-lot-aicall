@@ -1,0 +1,60 @@
+menu "Example Configuration"
+
+config WIFI_SSID
+    string "WiFi SSID"
+	default "xxx"
+	help
+		SSID (network name) for the example to connect to.
+
+config WIFI_PASSWORD
+    string "WiFi Password"
+    default "xxx"
+	help
+		WiFi password (WPA or WPA2) for the example to use.
+
+		Can be left blank if the network has no security set.
+
+config AUDIO_PLAY_VOLUME
+    int "Audio play volume"
+    default 90
+
+config AUDIO_RECORDER_AEC_ENABLE
+    bool
+    default y
+
+config RTC_APP_ID
+    string "智能体关联的RTC应用Id（警告：仅用于开发调试使用）"
+    default "xxx"
+
+config RTC_APP_KEY
+    string "智能体关联的RTC应用Keyd（警告：仅用于开发调试使用）"
+    default "xxx" 
+
+config RTC_USER_ID
+    string "当前用户参与智能体通话的用户Id（建议每个设备使用唯一的Id）"
+    default "123"
+
+
+config VOICE_AGENT_ID
+    string  "语音智能体ID（需要提前在控制台上创建智能体）"
+    default "xxx"
+
+config VOICE_AGENT_REGION
+    string "语音智能体所属区域）"
+    default "cn-xxx"
+
+
+config LICENSE_PRODUCT_ID
+    string "请输入License产品ID，请联系商务经理获取"
+    default "xxx"
+
+config LICENSE_AUTH_CODE
+    string "请输入License授权码，请联系商务经理获取"
+    default "xxx"
+
+config LICENSE_DEVICE_ID
+    string "设备序列号"
+    default "xxx"
+
+
+endmenu
