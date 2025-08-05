@@ -3,7 +3,7 @@
 
 ## 目录介绍
 - esp32-s3
-适用于乐鑫ESP32-S3-BOX，包含SDK及Demo
+适用于乐鑫ESP32-S3-BOX-3B，包含SDK及Demo
   
 - jl-ac791
 适用于杰理AC791序列，包含SDK及Demo
