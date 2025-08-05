@@ -1,10 +1,10 @@
 [English](README_English.md)
 
 # AI实时互动Example（JL-AC791序列开发板）
-阿里云 · AI实时互动演示Demo，适用于杰里AC791序列
+阿里云 · AI实时互动演示Demo，适用于杰理AC791序列
 
 ## 介绍
-本Demo主要演示杰里智能硬件与智能体的实时通话，并提供核心场景的接口调用参考。
+本Demo主要演示杰理智能硬件与智能体的实时通话，并提供核心场景的接口调用参考。
 
 ## 源码说明
 
@@ -30,7 +30,7 @@
 ```
 
 ### 环境要求
-- 搭建杰里AC791序列开发版环境，请参考[杰里开发环境安装说明](https://doc.zh-jieli.com/AC79/zh-cn/master/getting_started/environmental_install/index.html)
+- 搭建杰理AC791序列开发版环境，请参考[杰理开发环境安装说明](https://doc.zh-jieli.com/AC79/zh-cn/master/getting_started/environmental_install/index.html)
 
 
 ### 前提条件
@@ -40,7 +40,7 @@
 ## 跑通Example源码
 
 - Clone杰理的SDK: https://gitee.com/Jieli-Tech/fw-AC79_AIoT_SDK.git
-- Clone本Demo源码到杰里的apps/demo里，Clone修改目录名为`demo_artc_aicall`，如下：
+- Clone本Demo源码到杰理的apps/demo里，Clone修改目录名为`demo_artc_aicall`，如下：
 ```
 - FW-AC79_AIOT_SDK
   - apps
@@ -76,9 +76,9 @@
 
 ```
 > ❗❗❗注意：RTC_APP_KEY此次在本地生成签名Token，仅用于开发阶段的本地调试。对于线上版本，请勿内置RTC_APP_KEY，请使用服务端生成签名并下发方式。    
-> ❗❗❗在 [**这里**](https://help.aliyun.com/zh/ims/user-guide/generate-artc-authentication-token?spm=a2c4g.11186623.help-menu-193643.d_2_5_7_2_3.33a578b03GRPer&scm=20140722.H_2922636._.OR_help-T_cn~zh-V_1) 参考如何生成Token，在智能硬件场景，生成的Token无需进行base64转化，直接把json结果下发给杰里
+> ❗❗❗在 [**这里**](https://help.aliyun.com/zh/ims/user-guide/generate-artc-authentication-token?spm=a2c4g.11186623.help-menu-193643.d_2_5_7_2_3.33a578b03GRPer&scm=20140722.H_2922636._.OR_help-T_cn~zh-V_1) 参考如何生成Token，在智能硬件场景，生成的Token无需进行base64转化，直接把json结果下发给杰理
 
-- 编译Demo工程，参考[杰里官网文档](https://doc.zh-jieli.com/AC79/zh-cn/master/getting_started/project_download/download.html)
+- 编译Demo工程，参考[杰理官网文档](https://doc.zh-jieli.com/AC79/zh-cn/master/getting_started/project_download/download.html)
 - 运行Demo，通电后，按下下面按键与智能体进行互动：
     - `K1`： 启动智能体通话
     - `K2`： 挂断通话

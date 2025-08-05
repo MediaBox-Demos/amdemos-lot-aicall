@@ -1,10 +1,10 @@
 [English](README_English.md)
 
-# AI实时互动Example（乐鑫ESP32-S3-BOX）
-阿里云 · AI实时互动演示Demo，适用于乐鑫ESP32-S3-BOX
+# AI实时互动Example（乐鑫ESP32-S3-BOX-3B）
+阿里云 · AI实时互动演示Demo，适用于乐鑫ESP32-S3-BOX-3B
 
 ## 介绍
-本Demo主要演示杰里智能硬件与智能体的实时通话，并提供核心场景的接口调用参考。
+本Demo主要演示乐鑫ESP32-S3-BOX-3B智能硬件与智能体的实时通话，并提供核心场景的接口调用参考。
 
 ## 源码说明
 
@@ -36,7 +36,7 @@
 ```
 
 ### 环境要求
-- 搭建ESP-IDF开发环境，请参考[ESP-IDF编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)
+- 搭建ESP-ADF开发环境，请参考[ESP-ADF编程指南](https://docs.espressif.com/projects/esp-adf/zh_CN/latest/get-started/index.html)
 
 
 ### 前提条件
