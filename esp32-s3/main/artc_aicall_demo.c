@@ -11,6 +11,7 @@
 
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 
 static const char *TAG = "AICall";
@@ -26,7 +27,7 @@ static const char *TAG = "AICall";
 typedef struct  {
     artc_aicall_engine_t engine;
     artc_aicall_call_config_t *config;
-    bool can_audio_task_running;
+    volatile bool can_audio_task_running;
     audio_player_handle_t audio_player;
 } aicall_t;
 static aicall_t *g_curr_aicall = NULL;
@@ -85,11 +86,11 @@ void artc_aicall_demo_start_call_impl() {
     ESP_LOGI(TAG, "start call");
     // alirtc_rtc_set_log_level(ALIRTC_LOG_INFO);
 
+    g_error_code = 0;
     g_curr_aicall = malloc(sizeof(aicall_t));
     memset(g_curr_aicall, 0, sizeof(aicall_t));
     g_curr_aicall->config = malloc(sizeof(artc_aicall_call_config_t));
     memset(g_curr_aicall->config, 0, sizeof(artc_aicall_call_config_t));
-    g_curr_aicall->can_audio_task_running = false;
 
     int ts = (int)time(NULL);
     ts += TOKEN_VALID_DURATION;
@@ -155,7 +156,7 @@ void artc_aicall_demo_start_call_impl() {
     if (!engine) {
         ESP_LOGE(TAG, "engine init failed");
         destroy_aicall();
-        return;
+        goto __err0;
     }
     g_curr_aicall->engine = engine;
     
@@ -207,6 +208,7 @@ __err1:
     artc_aicall_handup(g_curr_aicall->engine);
     destroy_aicall();
 
+__err0:
     vTaskDelete(NULL);
 }
 

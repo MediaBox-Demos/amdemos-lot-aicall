@@ -13,6 +13,8 @@ void audio_recorder_destroy(audio_recorder_handle_t handle);
 audio_player_handle_t audio_player_create();
 void audio_player_run(audio_player_handle_t handle);
 int audio_player_write(audio_player_handle_t handle, const char *buffer, int size);
+void audio_player_pause(audio_player_handle_t handle);
+void audio_player_resume(audio_player_handle_t handle);
 void audio_player_destroy(audio_player_handle_t handle);
 
 #endif // _AUDIO_PIPELINE_2_H_

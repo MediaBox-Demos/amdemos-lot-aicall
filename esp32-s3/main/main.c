@@ -44,7 +44,11 @@ void print_run_time_stats() {
         ESP_LOGI(TAG, "Run Time Stats:\nTask Name       Time        Percent\n%s", buf);
 
         uint32_t heap_size = esp_get_free_heap_size();
-        ESP_LOGI(TAG, "Free Heap Size: %" PRIu32 " bytes (%" PRIu32 " Kb)", heap_size, heap_size / 1024);
+        uint32_t internal_heap_size = esp_get_free_internal_heap_size();
+        multi_heap_info_t info;
+        heap_caps_get_info(&info, MALLOC_CAP_SPIRAM);
+        ESP_LOGI(TAG, "Free Heap Size: %" PRIu32 " Kb (Internal/IRAM: %" PRIu32 " Kb, External/PSRAM: %d Kb)",
+                        heap_size / 1024, internal_heap_size / 1024, (int) (info.total_free_bytes / 1024));
 
         vTaskDelay(pdMS_TO_TICKS(10 * 1000));
     }

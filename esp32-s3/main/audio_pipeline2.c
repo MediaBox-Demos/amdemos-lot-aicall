@@ -52,6 +52,7 @@ audio_recorder_handle_t audio_recorder_create() {
 
     ESP_LOGI(TAG, "[1.1] Create i2s stream to read audio data from codec chip");
     i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT_WITH_PARA(CODEC_ADC_I2S_PORT, I2S_SAMPLE_RATE, I2S_BITS, AUDIO_STREAM_READER);
+    i2s_cfg.stack_in_ext = true;
     i2s_stream_set_channel_type(&i2s_cfg, I2S_CHANNELS);
     recorder->i2s_stream = i2s_stream_init(&i2s_cfg);
     audio_pipeline_register(recorder->pipeline, recorder->i2s_stream, "i2s");
@@ -64,6 +65,7 @@ audio_recorder_handle_t audio_recorder_create() {
     algo_config.algo_mask = ALGORITHM_STREAM_USE_AEC | ALGORITHM_STREAM_USE_AGC;
     algo_config.input_format = ALGORITHM_INPUT_FORMAT;
     algo_config.mode = AFE_MODE_HIGH_PERF;
+    algo_config.stack_in_ext = true;
     recorder->algo_stream = algo_stream_init(&algo_config);
     audio_element_set_music_info(recorder->algo_stream, I2S_SAMPLE_RATE, 1, 16);
     audio_pipeline_register(recorder->pipeline, recorder->algo_stream, "algo");
@@ -137,6 +139,7 @@ audio_player_handle_t audio_player_create() {
     i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT_WITH_PARA(I2S_NUM_0, I2S_SAMPLE_RATE, I2S_BITS, AUDIO_STREAM_WRITER);
     i2s_cfg.need_expand = (16 != I2S_BITS);
     i2s_cfg.out_rb_size = 320 * 10;
+    i2s_cfg.stack_in_ext = true;
     i2s_stream_set_channel_type(&i2s_cfg, I2S_CHANNELS);
     player->i2s_stream = i2s_stream_init(&i2s_cfg);
     audio_pipeline_register(player->pipeline, player->i2s_stream, "i2s");
@@ -154,6 +157,14 @@ void audio_player_run(audio_player_handle_t player) {
 
 int audio_player_write(audio_player_handle_t player, const char *buffer, int size) {
     return raw_stream_write(player->raw_stream, buffer, size);
+}
+
+void audio_player_pause(audio_player_handle_t player) {
+    audio_pipeline_pause(player->pipeline);
+}
+
+void audio_player_resume(audio_player_handle_t player) {
+    audio_pipeline_resume(player->pipeline);
 }
 
 void audio_player_destroy(audio_player_handle_t player) {

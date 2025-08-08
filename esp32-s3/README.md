@@ -114,6 +114,8 @@ config LICENSE_DEVICE_ID
 endmenu
 
 ```
+> 说明：智能体ID、区域、AppId、AppKey等信息参考[音视频通话快速入门
+](https://help.aliyun.com/zh/ims/user-guide/create-agents-for-audio-and-video-calls#fab1c1c750mqj)   
 > ❗❗❗注意：RTC_APP_KEY此次在本地生成签名Token，仅用于开发阶段的本地调试。对于线上版本，请勿内置RTC_APP_KEY，请使用服务端生成签名并下发方式。    
 > ❗❗❗在 [**这里**](https://help.aliyun.com/zh/ims/user-guide/generate-artc-authentication-token?spm=a2c4g.11186623.help-menu-193643.d_2_5_7_2_3.33a578b03GRPer&scm=20140722.H_2922636._.OR_help-T_cn~zh-V_1) 参考如何生成Token，在智能硬件场景，生成的Token无需进行base64转化，直接把json结果下发给开发版
 
@@ -142,6 +144,14 @@ I (9094) Main: [ 4 ] Set up event listener
 I (9095) Main: [ 5 ] Initialize finish, listen to events
 ```
 
+- 如果运行Demo后，出现出现以下证书过期的报错，一般情况下是连WiFi不稳定，NTP时间校对请求失败了，导致获取SDK使用初始时间进行校验从而校验不通过。
+```
+[1970-01-01 00:00:35.715][ERROR] [license.c:276][hermes_sdk] license response code is 400, dataSize: 321
+[1970-01-01 00:00:35.717][ERROR] [license.c:300][hermes_sdk] license refresh fail with code=-3, svcCode=InvalidTimeStamp. Expired, regeustId=c401D243-E831-5AD9-A756-283A94D314FF
+[1970-01-01 00:00:35.730][ERROR] [license.c:375][hermes_sdk] parse license response failed with result: -3
+[1970-01-01 00:00:35.739][ERROR] [artc _aicall.c:79][hermes_sdk] raise error event code: -10001 msg: action return: -2147481342
+```
+在运行本Demo时请确保WiFi可正常访问，例如切换热点等；本Demo在WiFi链接仅做简单示例，在实际生成时建议做好wifi断连后重连工作，在重连后重新对时。
 
 ## 智能体通话交互过程
 
